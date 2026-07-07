@@ -41,6 +41,22 @@ Obsidian 个人知识库、个人档案、学习闭环与生活数据助手。
 - 判断用户意图和风险：`references/intent-routing.md`
 - 创建或修改模板：`references/templates.md`
 
+## 首次使用规则
+
+第一次在某个工作区或用户指定文件夹中使用本 Skill 时，必须先把完整 Vault 结构搭好：
+
+1. 在当前工作区或用户指定文件夹内创建同级文件夹 `personal-file`，并把它作为 Obsidian Vault 根目录。
+2. 使用初始化脚本生成完整结构，先 dry-run 预览，再正式创建：
+
+```bash
+python3 scripts/init_vault.py --vault ./personal-file --dry-run
+python3 scripts/init_vault.py --vault ./personal-file
+```
+
+3. 后续所有档案、记录、学习项目、数据记录和知识库内容，默认都写入 `personal-file/` 内对应目录。
+4. 如果当前文件夹里已经存在散落的 `00-首页与导航`、`10-个人档案`、`20-学习与项目` 等目录，先说明将迁移到 `personal-file/` 的文件，再执行迁移；不要删除原始内容。
+5. 如果 `personal-file/` 已经存在，则复用该 Vault，不重新创建同名嵌套目录；初始化脚本默认不覆盖已有文件。
+
 ## 默认工作流
 
 1. 识别用户意图：记录、更新档案、学习闭环、知识整理、复盘、状态诊断、决策辅助、复盘转行动。
